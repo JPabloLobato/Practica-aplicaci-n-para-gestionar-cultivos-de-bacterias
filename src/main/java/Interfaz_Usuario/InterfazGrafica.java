@@ -1,15 +1,11 @@
 package Interfaz_Usuario;
 
 import Logica_de_Negocio.Experimento;
+import Logica_de_Negocio.ExperimentoDialogo;
 import Logica_de_Negocio.Poblacion;
 import Navegador_Archivos.GestorDatos;
 
 import javax.swing.*;
-import java.awt.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 
 public class InterfazGrafica extends JFrame {
     private JButton btnAbrirArchivo;
@@ -61,26 +57,18 @@ public class InterfazGrafica extends JFrame {
         add(btnGuardarComo);
 
         btnAbrirArchivo.addActionListener(e -> {
-            JFileChooser fileChooser = new JFileChooser("Experimentos/");
-            int seleccion = fileChooser.showOpenDialog(null);
-            if (seleccion == JFileChooser.APPROVE_OPTION) {
-                File archivo = fileChooser.getSelectedFile();
-                try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
-                    StringBuilder contenido = new StringBuilder();
-                    String linea;
-                    while ((linea = reader.readLine()) != null) {
-                        contenido.append(linea).append("\n");
-                    }
-                    JTextArea textArea = new JTextArea(contenido.toString());
-                    JScrollPane scrollPane = new JScrollPane(textArea);
-                    textArea.setLineWrap(true);
-                    textArea.setWrapStyleWord(true);
-                    scrollPane.setPreferredSize(new Dimension(500, 500));
-                    JOptionPane.showMessageDialog(null, scrollPane, "Contenido del archivo", JOptionPane.INFORMATION_MESSAGE);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Error al leer el archivo.");
+            String[] nombresExperimentos = GestorDatos.obtenerNombresExperimentos();
+            String nombreArchivo = (String) JOptionPane.showInputDialog(null, "Selecciona un experimento:", "Abrir Experimento", JOptionPane.QUESTION_MESSAGE, null, nombresExperimentos, nombresExperimentos[0]);
+            if (nombreArchivo != null && !nombreArchivo.trim().isEmpty()) {
+                experimento = GestorDatos.cargarExperimento(nombreArchivo);
+                if (experimento != null) {
+                    JOptionPane.showMessageDialog(null, "Experimento cargado correctamente.");
+                    new ExperimentoDialogo(experimento).setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al cargar el experimento.");
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "Error: se esperaba un nombre de archivo.");
             }
         });
 
@@ -89,25 +77,44 @@ public class InterfazGrafica extends JFrame {
             if (nombreExperimento != null && !nombreExperimento.trim().isEmpty()) {
                 experimento = new Experimento();
                 experimento.setNombre(nombreExperimento);
-                String numPoblacionesStr = JOptionPane.showInputDialog("¿Cuántas poblaciones quieres agregar?");
-                if (numPoblacionesStr != null && !numPoblacionesStr.trim().isEmpty()) {
-                    try {
-                        int numPoblaciones = Integer.parseInt(numPoblacionesStr);
-                        for (int i = 0; i < numPoblaciones; i++) {
-                            Poblacion poblacion = new Poblacion();
-                            // Aquí se recogen los datos de la población y se añaden a la lista de poblaciones del experimento
-                            experimento.getPoblaciones().add(poblacion);
+                int respuesta = JOptionPane.showConfirmDialog(null, "¿Quieres añadir una población al experimento?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                if (respuesta == JOptionPane.YES_OPTION) {
+                    String numPoblacionesStr = JOptionPane.showInputDialog("¿Cuántas poblaciones quieres agregar?");
+                    if (numPoblacionesStr != null && !numPoblacionesStr.trim().isEmpty()) {
+                        try {
+                            int numPoblaciones = Integer.parseInt(numPoblacionesStr);
+                            for (int i = 0; i < numPoblaciones; i++) {
+                                Poblacion poblacion = new Poblacion();
+                                // Aquí se recogen los datos de la población.
+                                String nombrePoblacion = JOptionPane.showInputDialog("Introduce el nombre de la población:");
+                                String fechaInicio = JOptionPane.showInputDialog("Introduce la fecha de inicio (DD/MM/AAAA):");
+                                String fechaFin = JOptionPane.showInputDialog("Introduce la fecha de fin (DD/MM/AAAA):");
+                                String numBacterias = JOptionPane.showInputDialog("Introduce el número de bacterias iniciales:");
+                                String temperatura = JOptionPane.showInputDialog("Introduce la temperatura a la que se van a someter las bacterias:");
+                                String luminosidad = JOptionPane.showInputDialog("Introduce las condiciones de luminosidad (Alta, Media, Baja):");
+                                String dosisComida = JOptionPane.showInputDialog("Introduce la dosis de comida:");
+                                // Aquí se asignan los datos a la población.
+                                poblacion.setNombre(nombrePoblacion);
+                                poblacion.setFechaInicio(fechaInicio);
+                                poblacion.setFechaFin(fechaFin);
+                                poblacion.setNumBacteriasIniciales(Integer.parseInt(numBacterias));
+                                poblacion.setTemperatura(Double.parseDouble(temperatura));
+                                poblacion.setLuminosidad(luminosidad);
+                                poblacion.setDosisComida(Double.parseDouble(dosisComida));
+                                // Aquí se añade la población a la lista de poblaciones del experimento.
+                                experimento.getPoblaciones().add(poblacion);
+                            }
+                            JOptionPane.showMessageDialog(null, "Nuevo experimento creado");
+                        } catch (NumberFormatException ex) {
+                            JOptionPane.showMessageDialog(null, "Error: se esperaba un número");
                         }
-                        JOptionPane.showMessageDialog(null, "Nuevo experimento creado");
-                        String nombreArchivo = experimento.getNombre() + ".txt";
-                        GestorDatos.guardarExperimento(nombreArchivo, experimento);
-                        JOptionPane.showMessageDialog(null, "Experimento guardado");
-                    } catch (NumberFormatException ex) {
+                    } else {
                         JOptionPane.showMessageDialog(null, "Error: se esperaba un número");
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error: se esperaba un número");
                 }
+                String nombreArchivo = experimento.getNombre() + ".txt";
+                GestorDatos.guardarExperimento(nombreArchivo, experimento);
+                JOptionPane.showMessageDialog(null, "Experimento guardado");
             } else {
                 JOptionPane.showMessageDialog(null, "Error: se esperaba un nombre de experimento");
             }
