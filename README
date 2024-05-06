@@ -1,6 +1,9 @@
 # Repositorio GitHub:
 URL GitHUb: https://github.com/JPabloLobato/Practica-aplicaci-n-para-gestionar-cultivos-de-bacterias.git
 
+# Iniciación de la aplicación:
+Para iniciar la aplicación, se debe ejecutar el archivo .jar Archivo_ejecutable_MAIN.jar (lo he dejado fuera y no dentro de out para facilitar el acceso) o el archivo "InterfazGrafica2.java", que se encuentra en el paquete "Interfaz_Usuario"
+
 # Organización y estructura de las clases:
 La aplicación se compone de 3 paquetes:
 "Interfaz_Usuario", "Navegador_Archivos" y "Logica_de_Negocio".
