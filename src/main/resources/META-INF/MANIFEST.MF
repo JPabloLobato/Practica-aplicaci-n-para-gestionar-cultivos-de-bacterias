@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Main-Class: Interfaz_Usuario.InterfazGrafica
+Class-Path: gson-2.8.9.jar juniversalchardet-2.4.0.jar log4j-core-2.17.1
+ .jar log4j-api-2.17.1.jar
+
