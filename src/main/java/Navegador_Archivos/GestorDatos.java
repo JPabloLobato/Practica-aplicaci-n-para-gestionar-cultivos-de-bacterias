@@ -5,33 +5,30 @@ import Logica_de_Negocio.Experimento;
 import java.io.*;
 
 public class GestorDatos {
-    private static final String CARPETA_EXPERIMENTOS = "experimento/";
-    private static final Gson GSON = new Gson();
+    private static final String RUTA_CARPETA = "Experimentos/";
 
     public static void guardarExperimento(String nombreArchivo, Experimento experimento) {
-        try {
-            FileWriter fileWriter = new FileWriter("Experimentos/" + nombreArchivo);
-            GSON.toJson(experimento, fileWriter);
-            fileWriter.close();
-        } catch (IOException i) {
-            i.printStackTrace();
+        File file = new File(RUTA_CARPETA + nombreArchivo);
+        try (FileWriter fileWriter = new FileWriter(file)) {
+            fileWriter.write(new Gson().toJson(experimento));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     public static Experimento cargarExperimento(String nombreArchivo) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("Experimentos/" + nombreArchivo));
-            Experimento experimento = GSON.fromJson(reader, Experimento.class);
-            reader.close();
-            return experimento;
-        } catch (IOException i) {
-            i.printStackTrace();
+            File file = new File(RUTA_CARPETA + nombreArchivo);
+            FileReader fileReader = new FileReader(file);
+            return new Gson().fromJson(fileReader, Experimento.class);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
             return null;
         }
     }
 
     public static String[] obtenerNombresExperimentos() {
-        File folder = new File("Experimentos/");
+        File folder = new File(RUTA_CARPETA);
         return folder.list((dir, name) -> name.endsWith(".txt"));
     }
 }
