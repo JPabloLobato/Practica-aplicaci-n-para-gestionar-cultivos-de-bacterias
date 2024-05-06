@@ -1,6 +1,9 @@
 # Repositorio GitHub:
 URL GitHUb: https://github.com/JPabloLobato/Practica-aplicaci-n-para-gestionar-cultivos-de-bacterias.git
 
+# Nombre del alumno:
+Juan Pablo Lobato
+
 # Iniciación de la aplicación:
 Para iniciar la aplicación, se debe ejecutar el archivo .jar que se encuentra en out/artifacts/Practica_aplicaci_n_para_gestionar_cultivos_de_bacterias_jar o el archivo "InterfazGrafica2.java", que se encuentra en el paquete "Interfaz_Usuario"
 
