@@ -1,17 +1,17 @@
 # Repositorio GitHub:
 URL GitHUb: https://github.com/JPabloLobato/Practica-aplicaci-n-para-gestionar-cultivos-de-bacterias.git
 
-# Organización y estrucutra de las clases:
+# Organización y estructura de las clases:
 La aplicación se compone de 3 paquetes:
-Interfaz_Usuario, Navegador_Archivos y Logica_de_Negocio.
-- En el paquate Interfaz_Usuario, se hallan la clases InterfasGrafica, la cual maneja la Interfaz Gráfica de la aplicación.
-- En el paquete Navegador_Archivos, se encuentra la clase GestorDatos, que gestiona la lectura y escritura de los datos de los archivos (experimentos).
-- En el paquete Logica_de_Negocio, se ubican las clases Experimento, Poblacion, ExperimentoDialogo, PoblacionDialogo y ComidaDialogo:
-    - La clase Experimento, contiene los datos de un experimento, como el nombre, y la lista de poblaciones.
-    - La clase Poblacion, contiene los datos de una población dentro de un experimento, guardando los datos como el nombre, el número de bacterias y la lista de comidas.
-    - La clase ExperimentoDialogo, es un diálogo que permite al usuario ver los datos de un experimento.
-    - La clase PoblacionDialogo, es un diálogo que permite al usuario observar los datos de una población.
-    - La clase ComidaDialogo, es un diálogo que permite al usuario ver la cantidad de comida diaria par una población.
+"Interfaz_Usuario", "Navegador_Archivos" y "Logica_de_Negocio".
+- En el paquate "Interfaz_Usuario", se halla la clase "InterfazGrafica2, la cual maneja la Interfaz Gráfica de la aplicación.
+- En el paquete "Navegador_Archivos", se encuentra la clase "GestorDatos", que gestiona la lectura y escritura de los datos de los archivos (experimentos).
+- En el paquete "Logica_de_Negocio", se ubican las clases "Experimento", "Poblacion", "ExperimentoDialogo", "PoblacionDialogo" y "ComidaDialogo":
+    - La clase "Experimento", contiene los datos de un experimento, como el nombre, y la lista de poblaciones.
+    - La clase "Poblacion", contiene los datos de una población dentro de un experimento, guardando los datos como el nombre, el número de bacterias y la lista de comidas.
+    - La clase "ExperimentoDialogo", es un diálogo que permite al usuario ver los datos de un experimento.
+    - La clase "PoblacionDialogo", es un diálogo que permite al usuario observar los datos de una población.
+    - La clase "ComidaDialogo", es un diálogo que permite al usuario ver la cantidad de comida diaria para una población.
 
 # Diagrama de clases:
 +--------------------------------+               +-----------------------+
