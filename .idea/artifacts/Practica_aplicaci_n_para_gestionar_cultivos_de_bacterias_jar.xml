@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact name="Practica-aplicaci-n-para-gestionar-cultivos-de-bacterias:jar">
+  <artifact type="jar" name="Practica-aplicaci-n-para-gestionar-cultivos-de-bacterias:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/Practica_aplicaci_n_para_gestionar_cultivos_de_bacterias_jar</output-path>
-    <root id="root">
+    <root id="archive" name="Practica-aplicaci-n-para-gestionar-cultivos-de-bacterias_jar.jar">
       <element id="archive" name="Practica-aplicaci-n-para-gestionar-cultivos-de-bacterias.jar">
         <element id="module-output" name="Practica-aplicaci-n-para-gestionar-cultivos-de-bacterias" />
       </element>
