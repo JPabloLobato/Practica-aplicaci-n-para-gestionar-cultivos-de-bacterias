@@ -1,1 +1,62 @@
+# Repositorio GitHub:
 URL GitHUb: https://github.com/JPabloLobato/Practica-aplicaci-n-para-gestionar-cultivos-de-bacterias.git
+
+# Organización y estrucutra de las clases:
+La aplicación se compone de 3 paquetes:
+Interfaz_Usuario, Navegador_Archivos y Logica_de_Negocio.
+- En el paquate Interfaz_Usuario, se hallan la clases InterfasGrafica, la cual maneja la Interfaz Gráfica de la aplicación.
+- En el paquete Navegador_Archivos, se encuentra la clase GestorDatos, que gestiona la lectura y escritura de los datos de los archivos (experimentos).
+- En el paquete Logica_de_Negocio, se ubican las clases Experimento, Poblacion, ExperimentoDialogo, PoblacionDialogo y ComidaDialogo:
+    - La clase Experimento, contiene los datos de un experimento, como el nombre, y la lista de poblaciones.
+    - La clase Poblacion, contiene los datos de una población dentro de un experimento, guardando los datos como el nombre, el número de bacterias y la lista de comidas.
+    - La clase ExperimentoDialogo, es un diálogo que permite al usuario ver los datos de un experimento.
+    - La clase PoblacionDialogo, es un diálogo que permite al usuario observar los datos de una población.
+    - La clase ComidaDialogo, es un diálogo que permite al usuario ver la cantidad de comida diaria par una población.
+
+# Diagrama de clases:
++--------------------------------+               +-----------------------+
+|           Experimento          |               |       Poblacion       |
++--------------------------------+               +-----------------------+
+| - nombre: String               |               | - nombre: String       |
+| - poblaciones: List<Poblacion> |               | - fechaInicio: String  |
++--------------------------------+               | - fechaFin: String     |
+| + Experimento()                |               | - numBacteriasIniciales: int |
+| + getNombre(): String          |               | - temperatura: double  |
+| + setNombre(nombre: String)    |               | - luminosidad: String  |
+| + getPoblaciones(): List<Poblacion> |          | - comidaInicial: int   |
++--------------------------------+               | - diaIncrementoComida: int |
+                                                 | - comidaDiaIncremento: int |
+                                                 | - comidaFinal: int      |
+                                                 +------------------------+
++--------------------------------+               | + Poblacion()          |
+|        ExperimentoDialogo      |               | + getNombre(): String  |
++--------------------------------+               | + setNombre(nombre: String) |
+| - experimento: Experimento     |               | + getFechaInicio(): String |
+| - txtNombre: JTextField        |               | + setFechaInicio(fechaInicio: String) |
+| - txtNombrePoblacion: JTextField |             | + getFechaFin(): String |
+| ...                            |               | + setFechaFin(fechaFin: String) |
++--------------------------------+               | + getNumBacteriasIniciales(): int |
+| + ExperimentoDialogo(experimento: Experimento) | + setNumBacteriasIniciales(numBacteriasIniciales: int) |
+| + initComponents(): void      |                | + getTemperatura(): double |
++--------------------------------+               | + setTemperatura(temperatura: double) |
+                                                 | + getLuminosidad(): String |
+                                                 | + setLuminosidad(luminosidad: String) |
+                                                 | + getComidaInicial(): int |
+                                                 | + setComidaInicial(comidaInicial: int) |
+                                                 | + getDiaIncrementoComida(): int |
+                                                 | + setDiaIncrementoComida(diaIncrementoComida: int) |
+                                                 | + getComidaDiaIncremento(): int |
+                                                 | + setComidaDiaIncremento(comidaDiaIncremento: int) |
+                                                 | + getComidaFinal(): int |
+                                                 | + setComidaFinal(comidaFinal: int) |
+                                                 +------------------------------------------+
++---------------------------------------+        |           PoblacionDialogo               |
+|          ComidaDialogo                |        +------------------------------------------+
++---------------------------------------+        | - poblacion: Poblacion                   |
+| - poblacion: Poblacion                |        |                                          |
+| ...                                   |        | + PoblacionDialogo(poblacion: Poblacion) |
++---------------------------------------+        | + initComponents(): void                 |
+| + ComidaDialogo(poblacion: Poblacion) |        |                                          |
+| + initComponents(): void              |        +------------------------------------------+
++---------------------------------------+
+
